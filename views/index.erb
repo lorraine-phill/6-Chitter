@@ -1,0 +1,14 @@
+  <h1>Welcome to Chitter</h1>
+  <ul>
+      <% @tweet.each do |tweet| %>
+        <li><a href=""><%= tweet.tweet_post %></a></li>
+      <% end %>
+    </ul>
+
+    <div id="new-tweet">
+      <form action="/tweets" method="post">
+        Tweet: <input type="text" name="tweet_post">
+        <input type="submit" value="Add this tweet">
+      </form>
+    </div>
+    
