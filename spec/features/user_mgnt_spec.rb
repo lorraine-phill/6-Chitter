@@ -1,6 +1,6 @@
-    require 'spec_helper'
+require 'spec_helper'
 
-    feature "User signs up" do
+feature "User signs up" do
 
       scenario "when being logged out" do    
         lambda { sign_up }.should change(User, :count).by(1)    
@@ -41,5 +41,34 @@
         fill_in :password_confirmation, :with => password_confirmation
         click_button "Sign up now, homie!"
       end
+end
 
+feature "User signs in" do
+
+      before(:each) do
+        User.create(:email => "test@test.com", 
+                    :password => 'test', 
+                    :password_confirmation => 'test')
+      end
+
+      scenario "with correct credentials" do
+        visit '/'
+        expect(page).not_to have_content("Welcome, test@test.com")
+        sign_in('test@test.com', 'test')
+        expect(page).to have_content("Welcome, test@test.com")
+      end
+
+      scenario "with incorrect credentials" do
+        visit '/'
+        expect(page).not_to have_content("Welcome, test@test.com")
+        sign_in('test@test.com', 'wrong')
+        expect(page).not_to have_content("Welcome, test@test.com")
+      end
+
+      def sign_in(email, password)
+        visit '/sessions/new'
+        fill_in 'email', :with => email
+        fill_in 'password', :with => password
+        click_button 'Sign in now'
+      end
 end

@@ -20,4 +20,14 @@ class User
 		   self.password_digest = BCrypt::Password.create(password)
 	  end
 
+    def self.authenticate(email, password)
+        # that's the user that's trying to sign in
+        user = first(:email => email)
+        if user && BCrypt::Password.new(user.password_digest) == password
+          user
+        else
+          nil
+        end
+    end
+
 end

@@ -1,14 +1,17 @@
-    
+
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Chitter Application</title>
-	<link rel="stylesheet" type="text/css" href="/css/application.css">
+<title>Chitter Application</title>
+<link rel="stylesheet" type="text/css" href="/css/application.css">
 </head>
 
 <body>
-	 <% if flash[:errors] && !flash[:errors].empty? %>
-     		 Sorry, there were the following problems with the form. 
+
+    <% if flash[:errors] && !flash[:errors].empty? %>
+         Sorry, there were the following problems with the form. 
+
       <ul id="errors">
         <% flash[:errors].each do |error| %>
           <li><%= error %></li>
@@ -16,9 +19,11 @@
       </ul>
     <% end %>
 
-      <% if current_user %>
+     <% if current_user %>
         Welcome, <%= current_user.email %>
       <% end %>
-      <%= yield %>
- </body>
- </html>
+  <%= yield %>
+
+</body>
+
+</html>
