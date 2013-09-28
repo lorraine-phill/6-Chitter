@@ -5,10 +5,10 @@ class User
       include DataMapper::Resource
 
 		  property :id, Serial
-    	  property :name, String
-    	  property :username, String, :unique => true, :message => "This username is taken"
-     	  property :email, String, :unique => true, :message => "This email address is taken"
-      	  property :password_digest, Text
+    	property :name, String
+    	property :username, String, :unique => true, :message => "This username is taken"
+      property :email, String, :unique => true, :message => "This email address is taken"
+      property :password_digest, Text
 
 	  attr_reader :password
       attr_accessor :password_confirmation
