@@ -57,3 +57,9 @@ set :session_secret, 'super secret'
 	      erb :"sessions/new"
 	    end
     end
+
+    delete '/sessions' do
+      flash[:notice] = "Good bye. Hope to see you soon!"
+      session[:user_id] = nil
+      redirect to('/')
+    end
